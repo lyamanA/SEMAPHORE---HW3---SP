@@ -51,7 +51,7 @@ namespace SEMAPHORE___HW3___SP
                 listBox_WaitingThreads.Items.RemoveAt(0);
                 listBox_WorkingThreads.Items.Add($"{waitingThread} -> {listBox_WorkingThreads.Items.Count + 1}");
 
-                // новый поток для выполнения работы
+                // РЅРѕРІС‹Р№ РїРѕС‚РѕРє РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ СЂР°Р±РѕС‚С‹
                 Thread newThread = new Thread(() => ThreadWork(waitingThread));
                 newThread.Start();
             }
@@ -61,7 +61,7 @@ namespace SEMAPHORE___HW3___SP
         {
             Thread.Sleep(3000); 
 
-            // Завершение работы потока
+            // Р—Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹ РїРѕС‚РѕРєР°
             Invoke(new Action(() =>
             {
                 listBox_WorkingThreads.Items.Remove($"{threadName} -> {listBox_WorkingThreads.Items.Count}");
@@ -74,10 +74,10 @@ namespace SEMAPHORE___HW3___SP
         {
             int newValue = (int)numericUpDown_PlacesinSemaphore.Value;
 
-            // Проверяем, чтобы значение было больше нуля
+            // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚РѕР±С‹ Р·РЅР°С‡РµРЅРёРµ Р±С‹Р»Рѕ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ
             if (newValue > 0)
             {
-                //нужно увеличить количество доступных мест в семафоре
+                //РЅСѓР¶РЅРѕ СѓРІРµР»РёС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРѕСЃС‚СѓРїРЅС‹С… РјРµСЃС‚ РІ СЃРµРјР°С„РѕСЂРµ
                 int difference = newValue - semaphoreSlim.CurrentCount;
 
                 if (difference > 0)
@@ -87,8 +87,8 @@ namespace SEMAPHORE___HW3___SP
             }
             else
             {
-                // Если значение равно нулю или меньше, устанавливаем минимальное значение на 1
-                MessageBox.Show("Количество мест в семафоре должно быть больше нуля.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Р•СЃР»Рё Р·РЅР°С‡РµРЅРёРµ СЂР°РІРЅРѕ РЅСѓР»СЋ РёР»Рё РјРµРЅСЊС€Рµ, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РјРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РЅР° 1
+                MessageBox.Show("РљРѕР»РёС‡РµСЃС‚РІРѕ РјРµСЃС‚ РІ СЃРµРјР°С„РѕСЂРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ.", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 numericUpDown_PlacesinSemaphore.Value = 1;
             }
         }
